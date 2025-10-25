@@ -21,7 +21,7 @@ export default function NotesClient({ category }: NotesClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data, isLoading, isError, isSuccess, error } = useQuery({
     queryKey: ["notes", { search: topic, tag: category, page: page }],
-    queryFn: () => fetchNotes("", page, category),
+    queryFn: () => fetchNotes(topic, page, category),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
