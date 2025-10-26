@@ -19,24 +19,52 @@ export default function NotePreview() {
     refetchOnMount: false,
   });
 
-  return (<>
-    {isLoading && <Loading />}
-    {isError && <p > Could not fetch note details.</p >}
-    {data && <Modal onClose={closeModal}>
-      <div className={css.container}>
-        <div className={css.item}>
-          <div className={css.header}>
-            <h2>{data?.title}</h2>
+  return (
+    <>
+      <Modal onClose={closeModal}>
+        {isLoading && <Loading />}
+        {isError && <p> Could not fetch note details.</p>}
+        {data && (
+          <div className={css.container}>
+            <div className={css.item}>
+              <div className={css.header}>
+                <h2>{data?.title}</h2>
+              </div>
+              <p className={css.content}>{data?.content}</p>
+              <p className={css.date}>{data?.createdAt}</p>
+            </div>
+            <span className={css.tag}>{data?.tag}</span>
           </div>
-          <p className={css.content}>{data?.content}</p>
-          <p className={css.date}>{data?.createdAt}</p>
-        </div>
-        <span className={css.tag}>{data?.tag}</span>
-      </div>
-      <button onClick={closeModal} className={css.backBtn}>
-        Close
-      </button>
-    </Modal>}
-  </>
+        )}
+        <button onClick={closeModal} className={css.backBtn}>
+          Close
+        </button>
+      </Modal>
+    </>
+    //   <>
+    //   {isLoading && <Modal onClose={closeModal}>
+
+    //     <Loading />
+
+    //   </Modal>}
+    //   {isError && <Modal onClose={closeModal}> <p > Could not fetch note details.</p > <button onClick={closeModal} className={css.backBtn}>
+    //       Close
+    //   </button></Modal>}
+    //   {data && <Modal onClose={closeModal}>
+    //     <div className={css.container}>
+    //       <div className={css.item}>
+    //         <div className={css.header}>
+    //           <h2>{data?.title}</h2>
+    //         </div>
+    //         <p className={css.content}>{data?.content}</p>
+    //         <p className={css.date}>{data?.createdAt}</p>
+    //       </div>
+    //       <span className={css.tag}>{data?.tag}</span>
+    //     </div>
+    //     <button onClick={closeModal} className={css.backBtn}>
+    //       Close
+    //     </button>
+    //   </Modal>}
+    // </>
   );
 }
